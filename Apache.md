@@ -31,6 +31,7 @@
         httpd-2.4.37.tar.gz
         ```
         展開します。
+
         ```
         $ sudo tar xvzf httpd-2.4.37.tar.gz
         $ cd httpd-2.4.37
@@ -43,7 +44,8 @@
             ダウンロードサイト:https://apr.apache.org/download.cgi
 
             APR(Apache Portable Runtime)は、 Apache HTTP Serverのサポートライブラリです。OSとソフトウェアの間でOSなどの環境の違いを吸収するAPIを提供します。  
-            同名のフォルダがないことを確認しソースファイルのダウンロード、展開をします。 
+            ソースファイルのダウンロード、展開をします。 
+
             ```
             $ pwd
             /usr/local/src
@@ -62,7 +64,9 @@
             ```
             $ sudo mv apr-1.6.5 httpd-2.4.37/srclib/apr
             ```
+
             ファイルの移動を確認します。
+
             ```
             $ cd /usr/local/src/httpd-2.4.37/srclib/
             $ find -name apr -type d
@@ -100,12 +104,14 @@
             PCREはPerl5互換の正規表現をC言語で実装したライブラリです。  
             カレントディレクトリは、/usr/local/srcです。  
             ソースファイルのダウンロード、展開をします。
+
             ```
             $ pwd
             /usr/local/src
             $ sudo wget https://ftp.pcre.org/pub/pcre/pcre-8.42.tar.gz
             ```
             展開します。
+
             ```
             $ sudo tar xvfz pcre-8.42.tar.gz
             $ cd pcre-8.42
@@ -171,12 +177,14 @@
 
             同名のフォルダがないことを確認し、ソースファイルをダウンロード、展開します。  
             カレントディレクトリは/usr/local/srcです。
+
             ```
             $ pwd
             /usr/local/src
             $ sudo wget https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2
             ```
             展開します。
+
             ```
             $ sudo tar xvzf expat-2.2.6.tar.bz2
             $ cd expat-2.2.6
@@ -213,13 +221,12 @@
         $ sudo cp -a /etc/init.d/httpd /etc/init.d/httpd.`date +%Y%m%d`
         ```
         
-        以下バックアップとの差分です。本環境に合わせて、  
-        httpdコマンドのPathは/usr/local/httpd/bin/httpd  
-        pidfileのPathは/usr/local/httpd/logs/httpd.pidとしました。
+        以下バックアップとの差分です。本環境に合わせてhttpdコマンドのPathは 
+        `/usr/local/httpd/bin/httpd`、pidfileのPathは`/usr/local/httpd/logs/httpd.pid`としました。
+
         ```
         $ cd /etc/init.d/
         $ sudo vim httpd
-
         -httpd=${HTTPD-/usr/sbin/httpd}
         -pidfile=${PIDFILE-/var/run/${prog}.pid}
         +httpd=${HTTPD-/usr/local/httpd/bin/httpd}
@@ -235,12 +242,12 @@
         GONE="${GONE}AgentLog|RefererLog|RefererIgnore|FancyIndexing|"
         GONE="${GONE}AccessConfig|ResourceConfig)"
         ```
-
         プロセスを起動させプロセスが立ち上がるか確認します。
 
         ```
         $ sudo /etc/init.d/httpd start
         $ ps aufxww |grep httpd
+        ```
 
         起動しました。
 
